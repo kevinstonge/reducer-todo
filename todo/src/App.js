@@ -3,6 +3,7 @@ import styled from "styled-components";
 import styles from "./baseStyles";
 import Header from "./Header";
 import Toolbar from "./Toolbar";
+import Todos from "./Todos";
 const Container = styled.div`
   ${styles.flexC}
   width: 100vw;
@@ -19,7 +20,7 @@ function App() {
       <Container>
         <Header todos={todos} />
         <Toolbar todos={todos} setTodos={setTodos} />
-        <p>list</p>
+        <Todos todos={todos} setTodos={setTodos} />
       </Container>
     </>
   );
