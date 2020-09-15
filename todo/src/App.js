@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import styles from "./baseStyles";
 import Header from "./Header";
+import Toolbar from "./Toolbar";
 const Container = styled.div`
   ${styles.flexC}
   width: 100vw;
@@ -12,12 +13,13 @@ const Container = styled.div`
   color: ${styles.colors.e3};
 `;
 function App() {
-  const [todos, setTodos] = useState([{}]);
+  const [todos, setTodos] = useState([]);
   return (
     <>
       <Container>
-        <Header todos={todos} setTodos={setTodos} />
-        <p>app</p>
+        <Header todos={todos} />
+        <Toolbar todos={todos} setTodos={setTodos} />
+        <p>list</p>
       </Container>
     </>
   );
