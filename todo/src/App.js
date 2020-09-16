@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
+import todoReducer from "./reducers/todoReducer";
 import styled from "styled-components";
-import { styles } from "./baseStyles";
-import Header from "./Header";
-import Toolbar from "./Toolbar";
-import Todos from "./Todos";
+import { styles, mixins } from "./baseStyles";
+import Header from "./components/Header";
+import Toolbar from "./components/Toolbar";
+import Todos from "./components/Todos";
 const Container = styled.div`
-  ${styles.flexC}
+  ${mixins.flexC}
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -13,14 +14,21 @@ const Container = styled.div`
   background-color: ${styles.colors.b1};
   color: ${styles.colors.e3};
 `;
+const initialState = [
+  {
+    item: "Learn about reducers",
+    completed: false,
+    id: 3892987589,
+  },
+];
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [state, dispatch] = useReducer(todoReducer, initialState);
   return (
     <>
       <Container>
-        <Header todos={todos} />
-        <Toolbar todos={todos} setTodos={setTodos} />
-        <Todos todos={todos} setTodos={setTodos} />
+        <Header todos={state} />
+        <Toolbar todos={state} dispatch={dispatch} />
+        <Todos todos={state} dispatch={dispatch} />
       </Container>
     </>
   );

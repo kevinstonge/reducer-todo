@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { styles, mixins } from "./baseStyles";
+import { styles, mixins } from "../baseStyles";
 import FontAwesome from "react-fontawesome";
 const Bar = styled.div`
   ${mixins.flexR}
@@ -34,7 +34,12 @@ function Toolbar(props) {
     <Bar>
       <Tool color={styles.colors.e1}>
         <input type="text" id="newTodo" />
-        <button>
+        <button
+          onClick={() => {
+            console.log("click");
+            props.dispatch({ type: "ADD", payload: "asdf" });
+          }}
+        >
           <FontAwesome name="plus-circle" /> add todo
         </button>
       </Tool>
@@ -45,7 +50,7 @@ function Toolbar(props) {
         </button>
       </Tool>
       <Tool color={styles.colors.e5}>
-        <button>
+        <button onClick={() => props.dispatch({ type: "DELETE" })}>
           <p>
             <FontAwesome name="trash" /> delete all
           </p>

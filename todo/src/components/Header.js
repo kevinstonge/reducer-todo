@@ -1,5 +1,5 @@
 import React from "react";
-import { styles, mixins } from "./baseStyles";
+import { styles, mixins } from "../baseStyles";
 import styled from "styled-components";
 //TODO: change 'props.todos.length' calls below to be based on a filter for completed tasks
 const Head = styled.header`

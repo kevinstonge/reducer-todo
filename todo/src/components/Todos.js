@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { styles, mixins } from "./baseStyles";
+import { styles, mixins } from "../baseStyles";
 import FontAwesome from "react-fontawesome";
 
 const List = styled.div`
@@ -8,6 +8,23 @@ const List = styled.div`
   ${mixins.box}
   border-color: ${styles.colors.e4};
   margin-top: ${styles.sizes.md};
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: ${styles.sizes.md};
+  }
+  &::-webkit-scrollbar-track {
+    background: ${styles.colors.e4};
+    border-radius: 0 ${styles.sizes.sm} 0 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${styles.colors.e3};
+    border-radius: 0 ${styles.sizes.sm} 0 0;
+    &:hover {
+      background: #fff;
+      cursor: pointer; //idk why this doesn't work!
+    }
+  }
 `;
 
 const Card = styled.button`
@@ -34,16 +51,22 @@ const Card = styled.button`
   }
 `;
 function Todos(props) {
+  console.log(props.todos);
   return (
     <List>
-      <Card>
-        <FontAwesome name="arrow-right" size="2x" />
-        <p>first todo item</p>
-      </Card>
-      <Card>
-        <FontAwesome name="check" size="2x" />
-        <p>second todo task</p>
-      </Card>
+      {props.todos.map((todo) => {
+        const faIcon = todo.completed ? "check" : "arrow-right";
+        return (
+          <Card
+            key={todo.id}
+            onClick={() => props.dispatch({ type: "TOGGLE", payload: todo.id })}
+          >
+            <FontAwesome name={faIcon} size="2x" />
+
+            <p>{todo.item}</p>
+          </Card>
+        );
+      })}
     </List>
   );
 }
