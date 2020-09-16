@@ -1,5 +1,4 @@
 export default function todoReducer(state, action) {
-  console.log("reducer called");
   switch (action.type) {
     case "ADD":
       return [

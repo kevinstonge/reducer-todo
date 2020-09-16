@@ -51,7 +51,6 @@ const Card = styled.button`
   }
 `;
 function Todos(props) {
-  console.log(props.todos);
   return (
     <List>
       {props.todos.map((todo) => {

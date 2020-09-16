@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { styles, mixins } from "../baseStyles";
 import FontAwesome from "react-fontawesome";
@@ -30,23 +30,20 @@ const Tool = styled.div`
   }
 `;
 function Toolbar(props) {
+  const [newText, setNewText] = useState("");
   return (
     <Bar>
       <Tool color={styles.colors.e1}>
-        <input type="text" id="newTodo" />
+        <input
+          type="text"
+          id="newTodo"
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
+        />
         <button
-          onClick={() => {
-            console.log("click");
-            props.dispatch({ type: "ADD", payload: "asdf" });
-          }}
+          onClick={() => props.dispatch({ type: "ADD", payload: newText })}
         >
           <FontAwesome name="plus-circle" /> add todo
-        </button>
-      </Tool>
-      <Tool color={styles.colors.e2}>
-        <input type="text" id="filter" />
-        <button>
-          <FontAwesome name="filter" /> filter
         </button>
       </Tool>
       <Tool color={styles.colors.e5}>

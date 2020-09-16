@@ -1,7 +1,6 @@
 import React from "react";
 import { styles, mixins } from "../baseStyles";
 import styled from "styled-components";
-//TODO: change 'props.todos.length' calls below to be based on a filter for completed tasks
 const Head = styled.header`
   ${mixins.flexR}
   flex-wrap: wrap;
@@ -15,7 +14,7 @@ const Head = styled.header`
   p {
     ${mixins.flexR};
     color: ${(props) =>
-      props.todos.length === 0 ? styles.colors.e1 : styles.colors.e5};
+      props.incomplete === 0 ? styles.colors.e1 : styles.colors.e5};
     span {
       font-weight: bolder;
       font-size: 200%;
@@ -24,11 +23,12 @@ const Head = styled.header`
   }
 `;
 function Header(props) {
+  const incomplete = props.todos.filter((todo) => !todo.completed).length;
   return (
-    <Head todos={props.todos}>
+    <Head incomplete={incomplete}>
       <h1>React.ToDo</h1>
       <p>
-        <span>{props.todos.length}</span> incomplete todos
+        <span>{incomplete}</span> incomplete todos
       </p>
     </Head>
   );
