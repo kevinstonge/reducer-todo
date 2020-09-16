@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import styles from "./baseStyles";
+import { styles, mixins } from "./baseStyles";
+import FontAwesome from "react-fontawesome";
 const Bar = styled.div`
-  ${styles.flexR}
-  justify-content: center;
-  gap: ${styles.sizes.md};
-  width: 100%;
-  padding: ${styles.sizes.md};
-  background-color: ${styles.colors.b2};
+  ${mixins.flexR}
+  flex-wrap: wrap;
+  ${mixins.box}
+  border-color: ${styles.colors.e3};
   margin-top: ${styles.sizes.md};
-  //   border: 1px solid ${styles.colors.e5};
-  border-radius: ${styles.sizes.md} 0 ${styles.sizes.md} 0;
+  justify-content: flex-start;
+  gap: ${styles.sizes.md};
 `;
 const Tool = styled.div`
-  ${styles.flexC}
+  ${mixins.flexC}
   align-self: stretch;
   input,
   button {
@@ -23,25 +22,35 @@ const Tool = styled.div`
   button {
     background-color: ${styles.colors.b3};
     border: none;
-    color: ${styles.colors.e3};
+    color: ${(props) => props.color};
+    &:hover {
+      cursor: pointer;
+      background-color: ${styles.colors.b4};
+    }
   }
 `;
 function Toolbar(props) {
   return (
     <Bar>
-      <Tool>
+      <Tool color={styles.colors.e1}>
         <input type="text" id="newTodo" />
-        <button>add todo</button>
-      </Tool>
-      <Tool>
         <button>
-          <p>delete all</p>
-          <p>completed todos</p>
+          <FontAwesome name="plus-circle" /> add todo
         </button>
       </Tool>
-      <Tool>
+      <Tool color={styles.colors.e2}>
         <input type="text" id="filter" />
-        <button>filter</button>
+        <button>
+          <FontAwesome name="filter" /> filter
+        </button>
+      </Tool>
+      <Tool color={styles.colors.e5}>
+        <button>
+          <p>
+            <FontAwesome name="trash" /> delete all
+          </p>
+          <p>completed todos</p>
+        </button>
       </Tool>
     </Bar>
   );
