@@ -10,7 +10,8 @@ const List = styled.div`
   gap: ${styles.sizes.lg};
   ${mixins.box}
   border-color: ${styles.colors.e4};
-  margin-top: ${styles.sizes.md};
+  box-shadow: 0 0 0.5rem 0.1rem ${styles.colors.e4},
+    inset 0 0 0.5rem 0.1rem ${styles.colors.e4};
   overflow-y: auto;
   p {
     ${mixins.flexR}

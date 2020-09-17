@@ -6,6 +6,8 @@ const Head = styled.header`
   flex-wrap: wrap;
   ${mixins.box}
   border-color: ${styles.colors.e2};
+  box-shadow: 0 0 0.5rem 0.1rem ${styles.colors.e2},
+    inset 0 0 0.5rem 0.1rem ${styles.colors.e2};
   justify-content: space-between;
   h1 {
     font-size: ${styles.sizes.xl};

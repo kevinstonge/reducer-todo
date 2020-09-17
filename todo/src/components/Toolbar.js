@@ -7,7 +7,8 @@ const Bar = styled.div`
   flex-wrap: wrap;
   ${mixins.box}
   border-color: ${styles.colors.e3};
-  margin-top: ${styles.sizes.md};
+  box-shadow: 0 0 0.5rem 0.1rem ${styles.colors.e3},
+    inset 0 0 0.5rem 0.1rem ${styles.colors.e3};
   justify-content: flex-start;
   gap: ${styles.sizes.md};
 `;
@@ -60,8 +61,10 @@ function Toolbar(props) {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            setNewText("");
-            props.dispatch({ type: "ADD", payload: newText });
+            if (newText !== "") {
+              setNewText("");
+              props.dispatch({ type: "ADD", payload: newText });
+            }
           }}
         >
           <input
@@ -76,14 +79,16 @@ function Toolbar(props) {
           </button>
         </form>
       </Tool>
-      <Tool color={styles.colors.e5}>
-        <button onClick={() => props.dispatch({ type: "DELETE" })}>
-          <p>
-            <FontAwesome name="trash" /> delete all
-          </p>
-          <p>completed todos</p>
-        </button>
-      </Tool>
+      {props.todos.filter((t) => t.completed).length > 0 && (
+        <Tool color={styles.colors.e5}>
+          <button onClick={() => props.dispatch({ type: "DELETE" })}>
+            <p>
+              <FontAwesome name="trash" /> delete all
+            </p>
+            <p>completed todos</p>
+          </button>
+        </Tool>
+      )}
     </Bar>
   );
 }
