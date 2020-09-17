@@ -14,13 +14,7 @@ const Container = styled.div`
   background-color: ${styles.colors.b1};
   color: ${styles.colors.e3};
 `;
-const initialState = [
-  {
-    item: "Learn about reducers",
-    completed: false,
-    id: 3892987589,
-  },
-];
+const initialState = [];
 function App() {
   const [state, dispatch] = useReducer(todoReducer, initialState);
   return (
