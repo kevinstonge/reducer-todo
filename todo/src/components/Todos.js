@@ -75,7 +75,7 @@ function Todos(props) {
                 props.dispatch({ type: "TOGGLE", payload: todo.id })
               }
             >
-              <FontAwesome name={faIcon} size="2x" />
+              <FontAwesome name={`${faIcon} fa-fw`} size="2x" />
 
               <p>{todo.item}</p>
             </Card>
